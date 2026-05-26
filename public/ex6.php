@@ -1,21 +1,15 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
-
-
     if (!isset($_POST['prenom']) || !isset($_POST['nom']) || !isset($_POST['civilite'])) {
         echo "Il manque une donnée.";
         die();
     }
 
     if (empty($_POST['prenom']) || empty($_POST['nom']) || empty($_POST['civilite'])) {
-        echo "Champ vide";
+        echo "Champ vide.";
         die();
     }
-
-    // if () {
-
-    // }
 
 
     // INPUT SANITIZATION
@@ -48,11 +42,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
         <button type="submit">Envoyer</button>
 
-        <?php
-        // if () {
-        // <input type ="hidden">
-        // }
-        ?>
     </form>
 
 <?php }

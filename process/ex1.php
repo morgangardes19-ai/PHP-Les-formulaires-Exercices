@@ -1,5 +1,4 @@
 <?php
-// var_dump($_GET);
 if ($_SERVER['REQUEST_METHOD'] !== "GET") {
     header("Location: ../public/ex1.php?error=bad-method");
     exit();

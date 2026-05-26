@@ -1,6 +1,13 @@
 <?php require_once "../_partials/_head.php" ?>
 
-<form action="../process/ex1.php" method="get">
+<form action="../process/ex5.php" method="post">
+    <p>
+        <label for="civilite">Quelle est votre civilité ?</label><br>
+        <select name="civilite" id="civilite">
+            <option value="Monsieur">Mr</option>
+            <option value="Madame">Mme</option>
+        </select>
+    </p>
 
     <label for="prenom">Prénom :</label>
     <input type="text" id="prenom" name="prenom" required>

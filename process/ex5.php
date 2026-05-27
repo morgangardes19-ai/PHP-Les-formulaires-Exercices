@@ -21,9 +21,9 @@ $prenom = htmlspecialchars(trim($_POST['prenom']));
 $nom = htmlspecialchars(trim($_POST['nom']));
 $civilite = htmlspecialchars(trim($_POST['civilite']));
 
- require_once "../_partials/_head.php" 
+require_once "../_partials/_head.php"
 ?>
 
-    <h1>Binvenue <?=  $civilite ?> <?= $nom ?> <?= $prenom ?></h1>
+<h1>Binvenue <?= $civilite ?> <?= $nom ?> <?= $prenom ?></h1>
 
 <?php require_once "../_partials/_footer.php" ?>

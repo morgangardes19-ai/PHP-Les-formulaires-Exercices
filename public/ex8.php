@@ -11,8 +11,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         die();
     }
 
-
-
     if (isset($_POST["submit"])) {
         $check = getimagesize($_FILES["file"]["tmp_name"]);
         if ($check !== false) {
@@ -23,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             $uploadOk = 0;
         }
     }
-
 
     // INPUT SANITIZATION
 
@@ -47,10 +44,18 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
             echo "Sorry, there was an error uploading your file.";
         }
     }
-
     if ($imageFileType != "pdf") {
         echo "Seul le format PDF est autorisé.";
         $uploadOk = 0;
+    }
+    // if ($uploadOk == 0) {
+    //     echo "Seul le format PDF est autorisé.";
+    // } else {
+    //     move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
+    // }
+
+    if ($uploadOk == 1) {
+        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
     }
 } else {
 
@@ -59,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
 
     <?php require_once "../_partials/_head.php" ?>
 
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         <p>
             <label for="civilite">Quelle est votre civilité ?</label><br>
             <select name="civilite" id="civilite">

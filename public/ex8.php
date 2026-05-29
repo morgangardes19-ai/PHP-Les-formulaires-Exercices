@@ -11,51 +11,40 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
         die();
     }
 
-    if (isset($_POST["submit"])) {
-        $check = getimagesize($_FILES["file"]["tmp_name"]);
-        if ($check !== false) {
-            echo "File is an image - " . $check["mime"] . ".";
-            $uploadOk = 1;
-        } else {
-            echo "File is not an image.";
-            $uploadOk = 0;
-        }
-    }
+
+
 
     // INPUT SANITIZATION
 
     $prenom = htmlspecialchars(trim($_POST['prenom']));
     $nom = htmlspecialchars(trim($_POST['nom']));
     $civilite = htmlspecialchars(trim($_POST['civilite']));
-    var_dump($prenom, $nom, $civilite);
+    // var_dump($prenom, $nom, $civilite);
 
     $target_dir = "../uploads/";
     $target_file = $target_dir . basename($_FILES["file"]["name"]);
     $target_file_name = basename($_FILES["file"]["name"]);
 
+
+
     $imageFileType0 = strtolower(pathinfo($target_file_name, PATHINFO_FILENAME));
     $imageFileType = strtolower(pathinfo($target_file_name, PATHINFO_EXTENSION));
-    var_dump($imageFileType0, $imageFileType);
 
-    if (!file_exists($target_file)) {
-        if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
-            echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"])) . " has been uploaded.";
-        } else {
-            echo "Sorry, there was an error uploading your file.";
+
+
+
+
+
+    if ($imageFileType === "pdf") {
+        if (!file_exists($target_file)) {
+            if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+                echo "The file " . htmlspecialchars(basename($_FILES["file"]["name"])) . " has been uploaded.";
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
         }
-    }
-    if ($imageFileType != "pdf") {
+    } else {
         echo "Seul le format PDF est autorisé.";
-        $uploadOk = 0;
-    }
-    // if ($uploadOk == 0) {
-    //     echo "Seul le format PDF est autorisé.";
-    // } else {
-    //     move_uploaded_file($_FILES["file"]["tmp_name"], $target_file);
-    // }
-
-    if ($uploadOk == 1) {
-        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
     }
 } else {
 
